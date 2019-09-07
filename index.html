@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <!-- Bootstrap/Reset/Style CSS -->
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -21,13 +21,15 @@
     <!-- Jumbotron -->
     <div class="jumbotron text-center">
         <h2>Quizzing with Bob Ross</h2>
+        <p> Do you think you know the happy painter? Try to get all the questions right, but don't worry - we don't make mistakes, just happy little accidents!</p>
         <button class="btn btn-primary" id="start-button">Start Game</button>
-        <p id="timeRemaining" class="lead">Time Remaining: <span id="timer"></span></p>
     </div>
 
     <!--Question/Answer Container-->
-    <div class="container">
+    <div class="container text-center">
         <div id="question-answer-container">
+            <p id="timeRemaining" class="lead">Time Remaining: <span id="timer"></span></p>
+
             <div id="question"></div>
             <div id="choices"></div>
         </div>
@@ -44,7 +46,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
-   
+
 </body>
 
 </html>

@@ -1,5 +1,23 @@
+body {
+    background-image: url("../images/paintingbackground.jpg");
+    background-size: cover;
+}
 
+.jumbotron {
+    background: none;
+    width: 60%;
+    margin: 0 auto;
+}
 
 #question-answer-container {
     visibility: hidden;
+    background: rgba(211, 211, 211, .5);
+    width: 80%;
+    margin: 0 auto;    
+}
+
+.choicesButtons {
+    margin: 5%;
+    padding: 20px;
+    width: 300px;
 }

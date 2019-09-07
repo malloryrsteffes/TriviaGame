@@ -73,7 +73,7 @@ function loadQuestion(){
 
     // Loads the choices by looping through our currentQuestion questionArray choices.
     for (var i = 0; i < choices.length; i++){
-        $("#choices").append("<button class='btn btn-primary'>" + choices[i] + "</button>");
+        $("#choices").append("<button class='btn btn-primary choicesButtons'>" + choices[i] + "</button>");
     }
 
 }
@@ -84,7 +84,7 @@ function checkAnswers(){
 
     for (var i = 0; i < questionsArray.length; i++){
         correctAnswer = questionsArray[currentQuestion].correctAnswer;
-        //userGuess = //Still figuring out how to link this
+        //userGuess = Still figuring out how to link this
     }
 }
 
