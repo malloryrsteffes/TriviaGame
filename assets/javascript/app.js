@@ -3,6 +3,7 @@ $(document).ready(function(){
 
 // Global Variables
 var score = 0;
+var wrongAnswers = 0;
 var timer = 20;
 var timerOn = false;
 var currentQuestion = 0 // This will pull the first question from the array
@@ -73,27 +74,56 @@ function loadQuestion(){
 
     // Loads the choices by looping through our currentQuestion questionArray choices.
     for (var i = 0; i < choices.length; i++){
-        $("#choices").append("<button class='btn btn-primary choicesButtons'>" + choices[i] + "</button>");
+        $("#choices").append("<button class='btn btn-primary choicesButtons' id='"+choices[i]+"'>" + choices[i] + "</button>"); 
+        //I want to give each an ID of choices + [i]. Not sure if I can do that. Update: DID IT
     }
 
+    $(".choicesButtons").click(function(){
+        
+        userGuess = ($(this).attr("id"));
+
+        for (var i = 0; i < questionsArray.length; i++){
+            correctAnswer = questionsArray[currentQuestion].correctAnswer;
+            
+        }
+
+        console.log(correctAnswer);
+        console.log(userGuess);
+
+        if (userGuess == correctAnswer){
+            //stop timer
+            score++;
+            currentQuestion++;
+            $("#question").empty();
+            $("#choices").empty();
+            userGuess = "";
+            $("#rightOrWrong").html("<p>You got it right! Bob knew you could do it.</p>");
+            loadQuestion();
+        }
+
+        else {
+            //stop timer
+            wrongAnswers++;
+            currentQuestion++
+            $("#question").empty();
+            $("#choices").empty();
+            userGuess = "";
+            $("#rightOrWrong").html("<p>Oh no! You got it wrong! Don't worry, Bob still believes in you.</p>");
+            loadQuestion();
+        }
+
+
+    });
 }
 
-function checkAnswers(){
-    correctAnswer;
-    userGuess;
 
-    for (var i = 0; i < questionsArray.length; i++){
-        correctAnswer = questionsArray[currentQuestion].correctAnswer;
-        //userGuess = Still figuring out how to link this
-    }
-}
 
 // On click start button
 
 $("#start-button").on("click", function(){
     $("#start-button").hide();
     loadQuestion();
-    checkAnswers();
+    //checkAnswers();
 });
 
 
