@@ -5,7 +5,7 @@ $(document).ready(function(){
 var score = 0;
 var wrongAnswers = 0;
 var timer = 20;
-var timerOn = false;
+var time;
 var currentQuestion = 0 // This will pull the first question from the array
 var correctAnswer;
 var userGuess;
@@ -63,6 +63,27 @@ var questionsArray = [
     },
 ]
 
+// Countdown function. IT WORKS.
+    function countdown(){
+        
+        $("#timer").html(timer);
+        //Sets a delay of one second before the timer starts
+        time = setInterval(showCountdown, 1000);
+        // Shows the countdown function. IT WORKS.
+        function showCountdown(){
+            if (timer === 0) {
+                clearInterval(time);
+              } 
+            else if (timer > 0) {
+                timer--;
+                $('#timer').html(timer);
+              }
+            
+    }
+
+}
+
+
 
 // Show the question and choices in the browser. currentQuestion initially equals 0.
 
@@ -85,7 +106,6 @@ function loadQuestion(){
         
         // Set the user guess
         userGuess = ($(this).attr("id"));
-
         //Sets the correct Answer
         for (var i = 0; i < questionsArray.length; i++){
             correctAnswer = questionsArray[currentQuestion].correctAnswer;
@@ -135,7 +155,8 @@ function loadQuestion(){
 $("#start-button").on("click", function(){
     $("#start-button").hide();
     loadQuestion();
-    //checkAnswers();
+    countdown();
+
 });
 
 
