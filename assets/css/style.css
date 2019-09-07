@@ -13,11 +13,17 @@ body {
     visibility: hidden;
     background: rgba(211, 211, 211, .5);
     width: 80%;
-    margin: 0 auto;    
+    margin: 0 auto; 
+    margin-bottom: 10%;   
 }
 
 .choicesButtons {
     margin: 5%;
     padding: 20px;
     width: 300px;
+}
+
+#gifs {
+    visibility: hidden;
+    padding-bottom: 5%;
 }

@@ -9,8 +9,10 @@ var timerOn = false;
 var currentQuestion = 0 // This will pull the first question from the array
 var correctAnswer;
 var userGuess;
+var rightGif;
+var wrongGif;
 
-//Questions/Answers Array
+//Questions and Answers Array
 var questionsArray = [
     {
         question: "Before he was a painter, what was Bob Ross' occupation?",
@@ -78,10 +80,13 @@ function loadQuestion(){
         //I want to give each an ID of choices + [i]. Not sure if I can do that. Update: DID IT
     }
 
+
     $(".choicesButtons").click(function(){
         
+        // Set the user guess
         userGuess = ($(this).attr("id"));
 
+        //Sets the correct Answer
         for (var i = 0; i < questionsArray.length; i++){
             correctAnswer = questionsArray[currentQuestion].correctAnswer;
             
@@ -90,6 +95,7 @@ function loadQuestion(){
         console.log(correctAnswer);
         console.log(userGuess);
 
+        //If the user guesses correctly
         if (userGuess == correctAnswer){
             //stop timer
             score++;
@@ -97,10 +103,14 @@ function loadQuestion(){
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
-            $("#rightOrWrong").html("<p>You got it right! Bob knew you could do it.</p>");
-            loadQuestion();
+            $("#question").html("<h3>You got it right! Bob knew you could do it.</h3>");
+            $("#gifs").css("visibility", "visible");
+            $("#wrongAnswerGif").hide();
+
+           
         }
 
+        //If the user guesses incorrectly
         else {
             //stop timer
             wrongAnswers++;
@@ -108,8 +118,10 @@ function loadQuestion(){
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
-            $("#rightOrWrong").html("<p>Oh no! You got it wrong! Don't worry, Bob still believes in you.</p>");
-            loadQuestion();
+            $("#question").html("<p>Oh no! You got it wrong! Don't worry, Bob still believes in you.</p>");
+            $("#gifs").css("visibility", "visible");
+            $("#rightAnswerGif").hide();
+           
         }
 
 
