@@ -7,10 +7,9 @@ var wrongAnswers = 0;
 var timer = 20;
 var time;
 var currentQuestion = 0 // This will pull the first question from the array
-var correctAnswer;
+var correctAnswer
 var userGuess;
-var rightGif;
-var wrongGif;
+var questionCounter = 0; //When this hits 8, we will end the game 
 
 //Questions and Answers Array
 var questionsArray = [
@@ -63,7 +62,7 @@ var questionsArray = [
     },
 ]
 
-// Countdown function. IT WORKS.
+// Countdown function. IT WORKS. Just don't stop when I get the right or wrong answer.
     function countdown(){
         
         $("#timer").html(timer);
@@ -120,27 +119,29 @@ function loadQuestion(){
             //stop timer
             score++;
             currentQuestion++;
+            questionCounter++;
+            console.log(questionCounter);
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
             $("#question").html("<h3>You got it right! Bob knew you could do it.</h3>");
-            $("#gifs").css("visibility", "visible");
-            $("#wrongAnswerGif").hide();
-
-           
+            $("#rightAnswerGif").append("<img src='./assets/images/rightAnswer.gif'></img>");
+            //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
+            document.getElementById('rightAnswerGif').innerHTML = '<img src="./assets/images/rightAnswer.gif"/>';
         }
 
         //If the user guesses incorrectly
         else {
             //stop timer
             wrongAnswers++;
-            currentQuestion++
+            currentQuestion++;
+            questionCounter++;
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
             $("#question").html("<p>Oh no! You got it wrong! Don't worry, Bob still believes in you.</p>");
-            $("#gifs").css("visibility", "visible");
-            $("#rightAnswerGif").hide();
+            //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
+            document.getElementById('wrongAnswerGif').innerHTML = '<img src="./assets/images/wrongAnswer.gif"/>';
            
         }
 

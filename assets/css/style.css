@@ -4,9 +4,10 @@ body {
 }
 
 .jumbotron {
-    background: none;
-    width: 60%;
+    background: rgba(211, 211, 211, .5);
+    width: 80%;
     margin: 0 auto;
+    margin-bottom: 5%;
 }
 
 #question-answer-container {
