@@ -6,6 +6,7 @@ var score = 0;
 var wrongAnswers = 0;
 var timer = 20;
 var time;
+var questionAnswered; // How we will stop the timer
 var currentQuestion = 0 // This will pull the first question from the array
 var correctAnswer
 var userGuess;
@@ -71,8 +72,14 @@ var questionsArray = [
         // Shows the countdown function. IT WORKS.
         function showCountdown(){
             if (timer === 0) {
+                questionAnswered = true;
                 clearInterval(time);
-              } 
+
+            } 
+              else if (questionAnswered === true) {
+                clearInterval(time);
+
+            }
             else if (timer > 0) {
                 timer--;
                 $('#timer').html(timer);
@@ -82,28 +89,42 @@ var questionsArray = [
 
 }
 
+// Reset Round Function
+function resetRound(){
+
+    questionCounter++
+    currentQuestion++;
+    
+        setTimeout(function () {
+
+            loadQuestion();
+            $('.gifs').remove();
+
+            }, 5000);
+        
+    
+}
 
 
 // Show the question and choices in the browser. currentQuestion initially equals 0.
 
 function loadQuestion(){
+    questionAnswered = false;
     var question = questionsArray[currentQuestion].question;
     var choices = questionsArray[currentQuestion].choices;
-    console.log(question);
-    console.log(choices);
+    
     $("#question-answer-container").css("visibility", "visible");
     $("#question").html("<h3>" + question + "</h3>");
 
-    // Loads the choices by looping through our currentQuestion questionArray choices.
+    // Loads the choices by looping through our currentQuestion (which starts at zero) questionArray choices.
     for (var i = 0; i < choices.length; i++){
         $("#choices").append("<button class='btn btn-primary choicesButtons' id='"+choices[i]+"'>" + choices[i] + "</button>"); 
-        //I want to give each an ID of choices + [i]. Not sure if I can do that. Update: DID IT
     }
 
-
+    // On click function for each choice button
     $(".choicesButtons").click(function(){
         
-        // Set the user guess
+        // Sets the user guess
         userGuess = ($(this).attr("id"));
         //Sets the correct Answer
         for (var i = 0; i < questionsArray.length; i++){
@@ -111,38 +132,38 @@ function loadQuestion(){
             
         }
 
-        console.log(correctAnswer);
-        console.log(userGuess);
-
         //If the user guesses correctly
         if (userGuess == correctAnswer){
-            //stop timer
+            //stop timer (once we know how to do that) 
+            questionAnswered = true; // Will trigger the timer to stop
             score++;
-            currentQuestion++;
-            questionCounter++;
+            //currentQuestion++;
+            //questionCounter++;
             console.log(questionCounter);
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
             $("#question").html("<h3>You got it right! Bob knew you could do it.</h3>");
-            $("#rightAnswerGif").append("<img src='./assets/images/rightAnswer.gif'></img>");
+            $("#rightAnswerGif").append("<img src='./assets/images/rightAnswer.gif'>");
             //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
             document.getElementById('rightAnswerGif').innerHTML = '<img src="./assets/images/rightAnswer.gif"/>';
+            resetRound();
         }
 
         //If the user guesses incorrectly
         else {
-            //stop timer
+            //stop timer (once we know how to do that)
+            questionAnswered = true; // Will trigger the timer to stop
             wrongAnswers++;
-            currentQuestion++;
-            questionCounter++;
+            //currentQuestion++;
+            //questionCounter++;
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
             $("#question").html("<p>Oh no! You got it wrong! Don't worry, Bob still believes in you.</p>");
             //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
             document.getElementById('wrongAnswerGif').innerHTML = '<img src="./assets/images/wrongAnswer.gif"/>';
-           
+           resetRound();
         }
 
 
