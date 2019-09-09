@@ -79,6 +79,7 @@ var questionsArray = [
  // Shows the countdown function. IT WORKS.
  function showCountdown(){
     if (timer === 0) {
+        resetRound();
         questionAnswered = true;
         clearInterval(time);
 
@@ -98,13 +99,23 @@ var questionsArray = [
 
 // Reset Round Function. I can get it to move on to the next question, but I can't currently figure out how to reset the timer.
 function resetRound(){
+        currentQuestion++;
+
+        if (currentQuestion < 8){
     
         setTimeout(function () {
 
             loadQuestion();
             $('.gifs').remove();
+            console.log(currentQuestion);
+            }, 1000); //CHANGE THIS BACK TO 5 WHEN DONE TESTING
+        }
 
-            }, 5000);
+        else {
+                $("#timeRemaining").remove();
+                $("#question").html("<h4> Congratulations! You finished the quiz. You answered " + score + " out of 8 questions correctly!</h3>");
+           
+            };
         
     
 }
@@ -117,7 +128,7 @@ function loadQuestion(){
     questionAnswered = false;
     var question = questionsArray[currentQuestion].question;
     var choices = questionsArray[currentQuestion].choices;
-    timer = 22; // I have literally no idea why setting this to 22 instead of twenty works.
+    timer = 21; // I have literally no idea why setting this to 22 instead of 20 works.
     $("#question-answer-container").css("visibility", "visible");
     $("#question").html("<h3>" + question + "</h3>");
 
@@ -149,7 +160,7 @@ function loadQuestion(){
             //stop timer (once we know how to do that) 
             questionAnswered = true; // Will trigger the timer to stop
             score++;
-            currentQuestion++;
+            //currentQuestion++;
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
@@ -165,11 +176,11 @@ function loadQuestion(){
             //stop timer (once we know how to do that)
             questionAnswered = true; // Will trigger the timer to stop
             wrongAnswers++;
-            currentQuestion++;
+            //currentQuestion++;
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
-            $("#question").html("<p>Oh no! You got it wrong! Don't worry, Bob still believes in you.</p>");
+            $("#question").html("<h3>Oh no! You got it wrong! Don't worry, Bob still believes in you.</h3>");
             //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
             document.getElementById('wrongAnswerGif').innerHTML = '<img src="./assets/images/wrongAnswer.gif"/>';
            resetRound();
