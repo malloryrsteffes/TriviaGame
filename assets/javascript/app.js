@@ -7,10 +7,9 @@ var wrongAnswers = 0;
 var timer = 20;
 var time;
 var questionAnswered; // How we will stop the timer
-var currentQuestion = 0 // This will pull the first question from the array
-var correctAnswer
+var currentQuestion = 0; // This will pull the first question from the array
+var correctAnswer;  
 var userGuess;
-var questionCounter = 0; //When this hits 8, we will end the game 
 
 //Questions and Answers Array
 var questionsArray = [
@@ -66,34 +65,39 @@ var questionsArray = [
 // Countdown function. IT WORKS. Just don't stop when I get the right or wrong answer.
     function countdown(){
         
+        
         $("#timer").html(timer);
         //Sets a delay of one second before the timer starts
-        time = setInterval(showCountdown, 1000);
+       // time = setInterval(showCountdown, 1000);
         // Shows the countdown function. IT WORKS.
-        function showCountdown(){
-            if (timer === 0) {
-                questionAnswered = true;
-                clearInterval(time);
-
-            } 
-              else if (questionAnswered === true) {
-                clearInterval(time);
-
-            }
-            else if (timer > 0) {
-                timer--;
-                $('#timer').html(timer);
-              }
+        showCountdown();
             
     }
 
+
+
+ // Shows the countdown function. IT WORKS.
+ function showCountdown(){
+    if (timer === 0) {
+        questionAnswered = true;
+        clearInterval(time);
+
+    } 
+      else if (questionAnswered === true) {
+        clearInterval(time);
+
+    }
+    else if (timer > 0) {
+        timer--;
+        $('#timer').html(timer);
+      }
+
+      //resetRound();
+    
 }
 
-// Reset Round Function
+// Reset Round Function. I can get it to move on to the next question, but I can't currently figure out how to reset the timer.
 function resetRound(){
-
-    questionCounter++
-    currentQuestion++;
     
         setTimeout(function () {
 
@@ -109,12 +113,20 @@ function resetRound(){
 // Show the question and choices in the browser. currentQuestion initially equals 0.
 
 function loadQuestion(){
+    
     questionAnswered = false;
     var question = questionsArray[currentQuestion].question;
     var choices = questionsArray[currentQuestion].choices;
-    
+    timer = 22; // I have literally no idea why setting this to 22 instead of twenty works.
     $("#question-answer-container").css("visibility", "visible");
     $("#question").html("<h3>" + question + "</h3>");
+
+    //Sets a delay of one second before the timer starts
+    time = setInterval(countdown, 1000);
+    
+    if (questionAnswered === false){
+        countdown();
+    }
 
     // Loads the choices by looping through our currentQuestion (which starts at zero) questionArray choices.
     for (var i = 0; i < choices.length; i++){
@@ -137,9 +149,7 @@ function loadQuestion(){
             //stop timer (once we know how to do that) 
             questionAnswered = true; // Will trigger the timer to stop
             score++;
-            //currentQuestion++;
-            //questionCounter++;
-            console.log(questionCounter);
+            currentQuestion++;
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
@@ -155,8 +165,7 @@ function loadQuestion(){
             //stop timer (once we know how to do that)
             questionAnswered = true; // Will trigger the timer to stop
             wrongAnswers++;
-            //currentQuestion++;
-            //questionCounter++;
+            currentQuestion++;
             $("#question").empty();
             $("#choices").empty();
             userGuess = "";
