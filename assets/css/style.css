@@ -7,7 +7,8 @@ body {
     background: rgba(211, 211, 211, .5);
     width: 80%;
     margin: 0 auto;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
+    padding-bottom: 2rem;
 }
 
 #question-answer-container {
@@ -15,7 +16,8 @@ body {
     background: rgba(211, 211, 211, .5);
     width: 80%;
     margin: 0 auto; 
-    margin-bottom: 10%;   
+    margin-bottom: 10%;  
+    padding: 20px; 
 }
 
 .choicesButtons {
@@ -24,7 +26,5 @@ body {
     width: 300px;
 }
 
-#gifs {
-    padding-bottom: 20px;
-}
+
 
