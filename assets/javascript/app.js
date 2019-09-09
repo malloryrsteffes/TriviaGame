@@ -12,6 +12,8 @@ var correctAnswer;
 var userGuess;
 
 // Sound Elements
+var introSound = document.getElementById("introSound");
+introSound.volume = .5;
 var rightAnswerSound = document.getElementById("rightAnswerSound");
 var wrongAnwerSound = document.getElementById("wrongAnswerSound");
 var startGameSound =  document.getElementById("startGameSound");
@@ -117,7 +119,7 @@ function resetRound(){
             loadQuestion();
             $('#gifs').empty();
             console.log(currentQuestion);
-            }, 4000); 
+            }, 5000); 
         }
 
         else {
@@ -201,6 +203,7 @@ $("#start-button").on("click", function(){
     // I'd like to put a small pause here to let the sound play. 
     //Figured this out! Just have to use a setTimout function. 
    setTimeout(function(){
+    introSound.play();
     $("#start-button").hide();
     loadQuestion();
     countdown();
