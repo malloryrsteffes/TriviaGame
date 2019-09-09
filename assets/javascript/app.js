@@ -35,8 +35,8 @@ var questionsArray = [
 
     {
         question: "About how long did it take Bob to film an entire 13-episode series of 'The Joy of Painting'? ",
-        choices: ["two weeks", "two days", "two months", "two hours"],
-        correctAnswer: "two days",
+        choices: ["Two Weeks", "Two Days", "Two Months", "Two Hours"],
+        correctAnswer: "Two Days",
     },
 
     {
@@ -47,8 +47,8 @@ var questionsArray = [
 
     {
         question: "How many copies of the featured painting did Bob produce for each episode?",
-        choices: ["one", "two", "three", "none"],
-        correctAnswer: "three",
+        choices: ["One", "Two", "Three", "None"],
+        correctAnswer: "Three",
     },
 
     {
@@ -65,8 +65,8 @@ var questionsArray = [
 
     {
         question: "What did Bob Ross avoid painting?",
-        choices: ["buildings", "bad weather", "people", "pollution"],
-        correctAnswer: "people",
+        choices: ["Buildings", "Bad Weather", "People", "Pollution"],
+        correctAnswer: "People",
     },
 ]
 
