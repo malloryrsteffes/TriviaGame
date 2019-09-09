@@ -100,15 +100,14 @@ var questionsArray = [
 // Reset Round Function. I can get it to move on to the next question, but I can't currently figure out how to reset the timer.
 function resetRound(){
         currentQuestion++;
-
         if (currentQuestion < 8){
     
         setTimeout(function () {
 
             loadQuestion();
-            $('.gifs').remove();
+            $('#gifs').empty();
             console.log(currentQuestion);
-            }, 1000); //CHANGE THIS BACK TO 5 WHEN DONE TESTING
+            }, 5000); //CHANGE THIS BACK TO 5 WHEN DONE TESTING
         }
 
         else {
@@ -165,9 +164,8 @@ function loadQuestion(){
             $("#choices").empty();
             userGuess = "";
             $("#question").html("<h3>You got it right! Bob knew you could do it.</h3>");
-            $("#rightAnswerGif").append("<img src='./assets/images/rightAnswer.gif'>");
+            $("#gifs").html("<img src='./assets/images/rightAnswer.gif'/>");
             //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
-            document.getElementById('rightAnswerGif').innerHTML = '<img src="./assets/images/rightAnswer.gif"/>';
             resetRound();
         }
 
@@ -182,7 +180,7 @@ function loadQuestion(){
             userGuess = "";
             $("#question").html("<h3>Oh no! You got it wrong! Don't worry, Bob still believes in you.</h3>");
             //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
-            document.getElementById('wrongAnswerGif').innerHTML = '<img src="./assets/images/wrongAnswer.gif"/>';
+            $("#gifs").html("<img src='./assets/images/wrongAnswer.gif'/>");
            resetRound();
         }
 
