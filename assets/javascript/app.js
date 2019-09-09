@@ -11,6 +11,12 @@ var currentQuestion = 0; // This will pull the first question from the array
 var correctAnswer;  
 var userGuess;
 
+// Sound Elements
+var rightAnswerSound = document.getElementById("rightAnswerSound");
+var wrongAnwerSound = document.getElementById("wrongAnswerSound");
+var startGameSound =  document.getElementById("startGameSound");
+var noAnswerSound =  document.getElementById("noAnswerSound");
+
 //Questions and Answers Array
 var questionsArray = [
     {
@@ -79,6 +85,9 @@ var questionsArray = [
  // Shows the countdown function. IT WORKS.
  function showCountdown(){
     if (timer === 0) {
+        $("#gifs").html("<img src='./assets/images/noAnswer.gif'/>");
+        noAnswerSound.play();
+        $("#question").html("<h3>If you didn't know, just ask Mallory! She'll talk too much about it.</h3>")
         resetRound();
         questionAnswered = true;
         clearInterval(time);
@@ -93,11 +102,10 @@ var questionsArray = [
         $('#timer').html(timer);
       }
 
-      //resetRound();
     
 }
 
-// Reset Round Function. I can get it to move on to the next question, but I can't currently figure out how to reset the timer.
+// Reset Round Function
 function resetRound(){
 
     currentQuestion++;
@@ -109,7 +117,7 @@ function resetRound(){
             loadQuestion();
             $('#gifs').empty();
             console.log(currentQuestion);
-            }, 3000); 
+            }, 4000); 
         }
 
         else {
@@ -160,30 +168,22 @@ function loadQuestion(){
 
         //If the user guesses correctly
         if (userGuess == correctAnswer){
-            //stop timer (once we know how to do that) 
             questionAnswered = true; // Will trigger the timer to stop
+            rightAnswerSound.play();
             score++;
-            //currentQuestion++;
-            $("#question").empty();
-            $("#choices").empty();
             userGuess = "";
             $("#question").html("<h3>You got it right! Bob knew you could do it.</h3>");
             $("#gifs").html("<img src='./assets/images/rightAnswer.gif'/>");
-            //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
             resetRound();
         }
 
         //If the user guesses incorrectly
         else {
-            //stop timer (once we know how to do that)
             questionAnswered = true; // Will trigger the timer to stop
+            wrongAnwerSound.play();
             wrongAnswers++;
-            //currentQuestion++;
-            $("#question").empty();
-            $("#choices").empty();
             userGuess = "";
             $("#question").html("<h3>Oh no! You got it wrong! Don't worry, Bob still believes in you.</h3>");
-            //I must be linking this file path incorrectly. I can tell SOMETHING is being appended to the page, but nothing is showing up! 
             $("#gifs").html("<img src='./assets/images/wrongAnswer.gif'/>");
            resetRound();
         }
@@ -197,10 +197,14 @@ function loadQuestion(){
 // On click start button
 
 $("#start-button").on("click", function(){
+    startGameSound.play();
+    // I'd like to put a small pause here to let the sound play. 
+    //Figured this out! Just have to use a setTimout function. 
+   setTimeout(function(){
     $("#start-button").hide();
     loadQuestion();
     countdown();
-
+    }, 3000); 
 });
 
 
