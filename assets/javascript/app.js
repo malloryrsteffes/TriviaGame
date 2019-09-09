@@ -125,6 +125,8 @@ function resetRound(){
         else {
                 $("#timeRemaining").remove();
                 $("#question").empty();
+                $(".jumbotron").show();
+                $("#start-button").hide();
                 $("#instructions").html("<h5> Congratulations! You finished the quiz. You answered " + score + " out of 8 questions correctly! And remember what Bob tells us: “The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe.”  </h5>");
                 $("#choices").empty();
                 $("#gifs").html("<img src='./assets/images/trees.gif'/>");
@@ -204,7 +206,7 @@ $("#start-button").on("click", function(){
     //Figured this out! Just have to use a setTimout function. 
    setTimeout(function(){
     introSound.play();
-    $("#start-button").hide();
+    $(".jumbotron").hide();
     loadQuestion();
     countdown();
     }, 3000); 

@@ -11,6 +11,17 @@ body {
     padding-bottom: 2rem;
 }
 
+.jumbotron p {
+    margin: 0 auto;
+    width: 60%;
+    padding: 15px;
+}
+
+.container{
+    margin-top: 10%;
+
+}
+
 #question-answer-container {
     visibility: hidden;
     background: rgba(211, 211, 211, .5);
