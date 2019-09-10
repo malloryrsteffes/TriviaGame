@@ -18,6 +18,7 @@ var rightAnswerSound = document.getElementById("rightAnswerSound");
 var wrongAnwerSound = document.getElementById("wrongAnswerSound");
 var startGameSound =  document.getElementById("startGameSound");
 var noAnswerSound =  document.getElementById("noAnswerSound");
+var endSound =  document.getElementById("endSound");
 
 //Questions and Answers Array
 var questionsArray = [
@@ -125,11 +126,12 @@ function resetRound(){
         else {
                 $("#timeRemaining").remove();
                 $("#question").empty();
-                $(".jumbotron").show();
+                $(".jumbotron").hide();
                 $("#start-button").hide();
-                $("#instructions").html("<h5> Congratulations! You finished the quiz. You answered " + score + " out of 8 questions correctly! And remember what Bob tells us: “The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe.”  </h5>");
+                $("#question-answer-container").html("<h5 id='endGameText'> Congratulations! You finished the quiz. You answered " + score + " out of 8 questions correctly! And remember what Bob tells us: “The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe.”  </h5>");
+                $("#question-answer-container").append("<button class='btn btn-primary' id='restartButton'> <a href='index.html'> 'Restart' </a> </button>")
                 $("#choices").empty();
-                $("#gifs").html("<img src='./assets/images/trees.gif'/>");
+                $("#gifs").empty();
             };
         
     
@@ -173,7 +175,12 @@ function loadQuestion(){
         //If the user guesses correctly
         if (userGuess == correctAnswer){
             questionAnswered = true; // Will trigger the timer to stop
-            rightAnswerSound.play();
+            if (currentQuestion < 7) {
+                rightAnswerSound.play();
+            }
+            else {
+                endSound.play();
+            }
             score++;
             userGuess = "";
             $("#question").html("<h3>You got it right! Bob knew you could do it.</h3>");
@@ -184,7 +191,12 @@ function loadQuestion(){
         //If the user guesses incorrectly
         else {
             questionAnswered = true; // Will trigger the timer to stop
-            wrongAnwerSound.play();
+            if (currentQuestion < 7){
+                wrongAnwerSound.play();
+            }
+            else {
+                endSound.play();
+            };
             wrongAnswers++;
             userGuess = "";
             $("#question").html("<h3>Oh no! You got it wrong! Don't worry, Bob still believes in you.</h3>");
@@ -195,6 +207,13 @@ function loadQuestion(){
 
     });
 }
+//Commenting this out, as it didn't work 
+//function reloadGame(){
+  //  $(".jumbotron").show();
+    //currentQuestion = 0;
+    //questionAnswered = false;
+    //$("#start-button").show();
+//}
 
 
 
@@ -212,5 +231,9 @@ $("#start-button").on("click", function(){
     }, 3000); 
 });
 
+// Commenting this out, as it didn't work
+//$("#restartButton").on("click", function(){
+  //  reloadGame();
+//})
 
 });
