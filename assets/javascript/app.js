@@ -7,7 +7,7 @@ var wrongAnswers = 0;
 var timer = 20;
 var time;
 var questionAnswered; // How we will stop the timer
-var currentQuestion = 7; // This will pull the first question from the array
+var currentQuestion = 0; // This will pull the first question from the array
 var correctAnswer;  
 var userGuess;
 
