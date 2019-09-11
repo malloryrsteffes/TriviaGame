@@ -7,7 +7,7 @@ var wrongAnswers = 0;
 var timer = 20;
 var time;
 var questionAnswered; // How we will stop the timer
-var currentQuestion = 0; // This will pull the first question from the array
+var currentQuestion = 7; // This will pull the first question from the array
 var correctAnswer;  
 var userGuess;
 
@@ -129,7 +129,8 @@ function resetRound(){
                 $(".jumbotron").hide();
                 $("#start-button").hide();
                 $("#question-answer-container").html("<h5 id='endGameText'> Congratulations! You finished the quiz. You answered " + score + " out of 8 questions correctly! And remember what Bob tells us: “The secret to doing anything is believing that you can do it. Anything that you believe you can do strong enough, you can do. Anything. As long as you believe.”  </h5>");
-                $("#question-answer-container").append("<button class='btn btn-primary' id='restartButton'> <a href='index.html'> 'Restart' </a> </button>")
+                $("#question-answer-container").append("<button class='btn btn-primary id='restartButton'><a href='index.html' id='restartLink'>Restart</a></button>")
+                $("#restartLink").css("color", "white");
                 $("#choices").empty();
                 $("#gifs").empty();
             };
@@ -180,6 +181,11 @@ function loadQuestion(){
             }
             else {
                 endSound.play();
+                //END THE GAME
+                $("#restartButton").on("click", function(){
+                    reloadGame();
+                });
+ 
             }
             score++;
             userGuess = "";
@@ -196,6 +202,10 @@ function loadQuestion(){
             }
             else {
                 endSound.play();
+                //END THE GAME 
+                $("#restartButton").on("click", function(){
+                    reloadGame();
+                });
             };
             wrongAnswers++;
             userGuess = "";
@@ -208,12 +218,12 @@ function loadQuestion(){
     });
 }
 //Commenting this out, as it didn't work 
-//function reloadGame(){
-  //  $(".jumbotron").show();
-    //currentQuestion = 0;
-    //questionAnswered = false;
-    //$("#start-button").show();
-//}
+function reloadGame(){
+   $(".jumbotron").show();
+    currentQuestion = 0;
+    questionAnswered = false;
+    $("#start-button").show();
+}
 
 
 
@@ -233,7 +243,7 @@ $("#start-button").on("click", function(){
 
 // Commenting this out, as it didn't work
 //$("#restartButton").on("click", function(){
-  //  reloadGame();
+   //reloadGame();
 //})
 
 });
