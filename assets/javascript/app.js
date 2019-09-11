@@ -218,12 +218,12 @@ function loadQuestion(){
     });
 }
 //Commenting this out, as it didn't work 
-function reloadGame(){
-   $(".jumbotron").show();
-    currentQuestion = 0;
-    questionAnswered = false;
-    $("#start-button").show();
-}
+//function reloadGame(){
+//    $(".jumbotron").show();
+//     currentQuestion = 0;
+//     questionAnswered = false;
+//     $("#start-button").show();
+// }
 
 
 
